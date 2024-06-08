@@ -47,6 +47,7 @@ executables:
     dependencies:
     - hpci
     - transformers
+    - mtl
     - 'simplessh'
 
 tests:

@@ -1,0 +1,4 @@
+[submodule "simplessh"]
+	path = simplessh
+	url = https://github.com/ignatiusm/simplessh.git
+	branch = ignatiusm-patch-1

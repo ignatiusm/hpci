@@ -48,7 +48,9 @@ executables:
     - hpci
     - transformers
     - mtl
-    - 'simplessh'
+    - libssh2
+    - bytestring
+    - filepath
 
 tests:
   hpci-test:

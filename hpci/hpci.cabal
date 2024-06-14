@@ -52,8 +52,6 @@ executable hpci-exe
     , filepath
     , hpci
     , libssh2
-    , mtl
-    , transformers
   default-language: Haskell2010
 
 test-suite hpci-test

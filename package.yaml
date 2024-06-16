@@ -46,8 +46,6 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - hpci
-    - transformers
-    - mtl
     - libssh2
     - bytestring
     - filepath

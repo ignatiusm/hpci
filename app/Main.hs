@@ -22,9 +22,22 @@ parseSubmissionResult = show . head . BSL.split (fromIntegral (ord '.')) . snd
 parseQstatResponse :: (Int, BSL.ByteString) -> String
 parseQstatResponse r = head $ tail $ reverse $ words $ head $ drop 2 $ lines $ BSL8.unpack $ snd r
 
+-- make execute command function, then can
 
--- pollUntilFinished :: String -> IO ()
--- pollUntilFinished id =
+checkStatus :: Session -> String -> IO ()
+checkStatus s jid = do
+  jobStatus <- runCommand s ("qstat " ++ jid)
+  let status = parseQstatResponse jobStatus
+  putStrLn status
+
+-- pollUntilFinished :: Session -> String -> IO ()
+-- pollUntilFinished s jid
+--   | r == "F"  = return ()
+--   | otherwise = pollUntilFinished session jid
+--   where
+--     do
+--       r <- checkStatus s jid
+
 -- TODO: add sshCred datatype (will make type signature less overwhelming), can have constructor to adds some defaults
 -- data Entry = Entry { langName :: String, perf3 :: Int, totalChars :: Int} deriving Show
 -- TODO: add parser for a config file; and for parsing job id; parse status of job
@@ -54,15 +67,14 @@ runHpci user host port command knownHost public private script logFile = do
 
   putStrLn ("Job ID: " ++ jobId)
 
-  threadDelay 1000000
-
   -- Query job status
   -- need data type for status
-  jobStatus <- runCommand session ("qstat " ++ jobId)
+  -- jobStatus <- runCommand session ("qstat " ++ jobId)
 
-  let status = parseQstatResponse jobStatus
+  -- let status = parseQstatResponse jobStatus
 
-  putStrLn ("Job Status: " ++ status)
+  -- putStrLn ("Job Status: " ++ status) 
+  checkStatus session jobId
 
   -- TODO: poll status of job, until error or finished (with timeout?)
   putStrLn "15 second delay to allow for job to finish before attempting to copy log off server"

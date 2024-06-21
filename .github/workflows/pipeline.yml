@@ -17,7 +17,7 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: DeterminateSystems/flake-checker-action@main
       - name: Run `nix build`
-        run: nix build .
+        run: nix build --show-trace --verbose .
 
       - uses: actions/upload-artifact@v4
         with:

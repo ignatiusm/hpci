@@ -3,7 +3,6 @@ module Main (main) where
 import qualified Data.ByteString.Lazy as BSL
 import qualified Data.ByteString.Lazy.Char8 as BSL8
 
-import Data.Char (ord)
 import Control.Concurrent
 import System.Environment
 import System.FilePath
@@ -17,7 +16,7 @@ runCommand s cmd = withChannel s $ \ch -> do
          readAllChannel ch
 
 parseSubmissionResult :: (Int, BSL.ByteString) -> String
-parseSubmissionResult = show . head . BSL.split (fromIntegral (ord '.')) . snd
+parseSubmissionResult = BSL8.unpack . head . BSL8.split '.' . snd
 
 parseQstatResponse :: (Int, BSL.ByteString) -> String
 parseQstatResponse r = head $ tail $ reverse $ words $ head $ drop 2 $ lines $ BSL8.unpack $ snd r

@@ -69,5 +69,8 @@
 
         packages.default = myPackage;
       });
+  nixConfig = {
+    sandbox = "relaxed";
+  };
 }
 

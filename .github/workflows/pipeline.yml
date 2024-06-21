@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build and upload:
+  build_and_upload:
     runs-on: ubuntu-22.04
     permissions:
       id-token: "write"

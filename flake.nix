@@ -68,10 +68,6 @@
         };
 
         packages.default = myPackage;
-
-        apps.default = flake-utils.lib.mkApp {
-          drv = myPackage;
-        };
       });
 }
 
